@@ -1,85 +1,202 @@
-= Ventajas, Limitaciones y Aplicaciones
+= Ventajas, Limitaciones y Aplicaciones de las Máquinas de Vectores de Soporte (SVM)
 
-= Antecedentes
+== Antecedentes
+
 === Hiperplano
-Es el límite de decisión que separa los datos.  
-- En 2D es una línea.  
-- En 3D un plano.  
-- En más dimensiones se le llama hiperplano.
+
+El hiperplano es la frontera de decisión utilizada por las Máquinas de Vectores de Soporte para separar las clases de un conjunto de datos.
+
+- En dos dimensiones corresponde a una línea.
+- En tres dimensiones corresponde a un plano.
+- En espacios de mayor dimensionalidad recibe el nombre de hiperplano.
+
+La calidad de la clasificación depende de la ubicación óptima de este hiperplano respecto a los datos.
 
 === Vectores de Soporte
-Son los puntos de datos más cercanos al hiperplano.  
-Definen la posición y orientación de la frontera; si se mueven, el hiperplano cambia.
+
+Los vectores de soporte son las observaciones más cercanas al hiperplano de separación. Estos puntos son fundamentales porque determinan completamente la posición y orientación de la frontera de decisión.
+
+Una característica importante de SVM es que únicamente estos puntos influyen directamente en el modelo final, lo que contribuye a su eficiencia en memoria.
 
 === Margen
-Es la distancia entre el hiperplano y los vectores de soporte más cercanos.  
-La SVM busca maximizar esta distancia para asegurar buena generalización.
 
-=== El "Truco del Kernel"
-Cuando los datos no son linealmente separables:  
-- Se proyectan a un espacio de mayor dimensión.  
-- Allí sí se pueden separar con un hiperplano.  
-- Al volver al espacio original, la frontera se ve como una curva compleja.
+El margen es la distancia entre el hiperplano y los vectores de soporte más cercanos de cada clase.
+
+El objetivo principal de SVM es maximizar este margen, ya que una mayor separación entre clases suele producir una mejor capacidad de generalización sobre datos no observados.
+
+=== El Truco del Kernel (Kernel Trick)
+
+En numerosos problemas reales los datos no son linealmente separables. Para resolver esta limitación, SVM utiliza funciones kernel que permiten proyectar los datos a espacios de mayor dimensionalidad donde sí es posible encontrar una separación lineal.
+
+El procedimiento consiste en:
+
+- Tomar los datos originales en un espacio de baja dimensión.
+- Transformarlos matemáticamente a un espacio de mayor dimensión.
+- Encontrar un hiperplano de separación en dicho espacio.
+- Proyectar el resultado nuevamente al espacio original.
+
+Como consecuencia, la frontera de decisión observada en el espacio original puede adoptar formas no lineales complejas.
 
 == Ventajas
 
-1. Alta eficacia en espacios de gran dimensionalidad  
-   - Ejemplo: análisis de microarrays de ADN.  
-   - Aplicación: clasificación de pacientes según riesgo de enfermedad.
+=== Alta eficacia en espacios de gran dimensionalidad
 
-2. Eficiencia en memoria  
-   - Ejemplo: de 10,000 muestras, solo 200 pueden ser vectores de soporte.  
-   - Aplicación: detección de intrusiones en redes.
+Las SVM pueden trabajar eficientemente con conjuntos de datos que contienen miles de variables, incluso cuando el número de características supera al número de observaciones.
 
-3. Robustez frente al sobreajuste  
-   - Ejemplo: clasificación de textos.  
-   - Aplicación: filtros de spam en correos electrónicos.
+*Ejemplo:* análisis de microarrays de ADN con miles de genes y pocos pacientes.
 
-4. Flexibilidad mediante kernels  
-   - Ejemplo: kernel radial separa círculos concéntricos.  
-   - Aplicación: reconocimiento facial.
+*Aplicación:* clasificación de pacientes según riesgo de enfermedad.
 
-5. Aplicabilidad transversal  
-   - Medicina: diagnóstico de cáncer de mama.  
-   - Seguridad informática: detección de intrusiones.  
-   - NLP: clasificación de textos.  
-   - Visión artificial: reconocimiento de objetos.
+=== Eficiencia en memoria
+
+El modelo almacena principalmente los vectores de soporte en lugar de todas las observaciones del conjunto de entrenamiento.
+
+*Ejemplo:* en un conjunto de 10 000 muestras, únicamente unas pocas centenas pueden convertirse en vectores de soporte.
+
+*Aplicación:* detección de intrusiones en redes informáticas.
+
+=== Robustez frente al sobreajuste
+
+Al maximizar el margen entre clases, SVM favorece la generalización y reduce el riesgo de memorizar los datos de entrenamiento.
+
+*Ejemplo:* clasificación automática de documentos de texto.
+
+*Aplicación:* sistemas de filtrado de correo spam.
+
+=== Flexibilidad mediante kernels
+
+Las funciones kernel permiten resolver problemas complejos con fronteras de decisión no lineales.
+
+*Ejemplo:* separación de datos con distribución circular utilizando un kernel radial (RBF).
+
+*Aplicación:* sistemas de reconocimiento facial.
+
+=== Aplicabilidad transversal
+
+Las SVM han demostrado utilidad en múltiples dominios:
+
+- Medicina: diagnóstico de cáncer de mama.
+- Seguridad informática: detección de intrusiones.
+- Procesamiento de lenguaje natural: clasificación de textos y análisis de sentimientos.
+- Visión artificial: reconocimiento de objetos e imágenes.
 
 == Limitaciones
 
-1. Escalabilidad limitada  
-   - Ejemplo: sistemas de recomendación con millones de usuarios.  
-   - Aplicación: análisis de transacciones bancarias masivas.
+=== Escalabilidad limitada
 
-2. Sensibilidad a datos mezclados o ruidosos  
-   - Ejemplo: detección de fraudes.  
-   - Aplicación: reconocimiento de voz con ruido ambiental.
+El entrenamiento de SVM requiere resolver un problema de optimización cuadrática cuyo costo computacional aumenta significativamente con el tamaño del conjunto de datos.
 
-3. Salida no probabilística  
-   - Ejemplo: diagnóstico médico requiere probabilidades.  
-   - Aplicación: técnicas como Platt scaling se usan como aproximación.
+*Ejemplo:* sistemas de recomendación con millones de usuarios.
 
-4. Dependencia del kernel  
-   - Ejemplo: clasificación de imágenes con kernel mal configurado.  
-   - Aplicación: análisis de sentimientos.
+*Aplicación afectada:* análisis masivo de transacciones bancarias.
 
-5. Escenarios ideales vs problemáticos  
-   - Ideales: datasets medianos, clases bien diferenciadas.  
-   - Problemáticos: datasets masivos, datos ruidosos o solapados.
+=== Sensibilidad a datos ruidosos
 
-== Aplicaciones
+Cuando existe un elevado grado de solapamiento entre clases o presencia de ruido, la frontera de decisión puede volverse inestable.
 
-Las Máquinas de Vectores de Soporte ofrecen importantes ventajas competitivas frente a otros algoritmos de aprendizaje automático.  
-Su principal virtud radica en su efectividad en espacios de alta dimensionalidad y eficiencia en memoria @geron2022.  
+*Ejemplo:* detección de fraude financiero.
 
-A pesar de sus bondades, presentan limitaciones:  
-- No escalan bien con datasets masivos.  
-- Son sensibles al ruido y solapamiento.  
-- No entregan probabilidades de clase sin calibración adicional @geron2022.  
+*Aplicación afectada:* reconocimiento de voz en ambientes con ruido.
 
-En ámbitos clínicos como el diagnóstico de cáncer de mama, las SVM han demostrado un desempeño excepcional.  
-Aquí la métrica de *Recall* es más relevante que la exactitud general, pues un falso negativo puede retrasar un tratamiento vital.
+=== Salida no probabilística
 
-Las Máquinas de Vectores de Soporte ofrecen importantes ventajas competitivas frente a otros algoritmos de aprendizaje automático. Su principal virtud radica en su extraordinaria efectividad en espacios de alta dimensionalidad, incluso cuando el número de variables supera ampliamente la cantidad de muestras de entrenamiento. Asimismo, al depender exclusivamente de los vectores de soporte para definir la frontera de decisión, presentan una gran eficiencia en el consumo de memoria. Adicionalmente, el algoritmo demuestra una notable resistencia al sobreajuste, especialmente en configuraciones con regularización adecuada @geron2022.
+Las SVM generan clasificaciones directas, pero no proporcionan probabilidades de pertenencia a una clase de forma nativa.
 
-A pesar de sus bondades, las SVM también presentan limitaciones significativas. No escalan de manera eficiente cuando el conjunto de datos de entrenamiento supera las decenas o cientos de miles de muestras, debido al costo computacional cuadrático de resolver el problema de optimización subyacente. Adicionalmente, son sensibles al ruido y al solapamiento extremo entre clases, y no proveen estimaciones de probabilidad de clase de manera nativa sin recurrir a técnicas de calibración adicionales @geron2022. En el ámbito del diagnóstico médico, como en el estudio del conjunto de datos de cáncer de mama de Wisconsin, las SVM han demostrado un desempeño excepcional. En este contexto clínico sensible, la métrica de exhaustividad (Recall) adquiere mayor relevancia que la exactitud general (Accuracy), ya que clasificar erróneamente un tumor maligno como benigno (falso negativo) puede retrasar un tratamiento vital para el paciente.
+*Ejemplo:* diagnóstico médico donde se requiere conocer el nivel de confianza de una predicción.
+
+*Aplicación:* utilización de métodos de calibración como Platt Scaling.
+
+=== Dependencia de la selección del kernel
+
+La calidad del modelo depende considerablemente de la elección del kernel y de sus hiperparámetros.
+
+*Ejemplo:* clasificación de imágenes con una configuración inadecuada.
+
+*Aplicación afectada:* análisis de sentimientos.
+
+=== Escenarios ideales y problemáticos
+
+*Escenarios ideales:*
+
+- Conjuntos de datos medianos.
+- Alta dimensionalidad.
+- Clases claramente diferenciadas.
+
+*Escenarios problemáticos:*
+
+- Grandes volúmenes de datos.
+- Alto nivel de ruido.
+- Fuerte solapamiento entre clases.
+
+== Aplicaciones Reales: Diagnóstico de Cáncer de Mama
+
+=== Contexto Clínico
+
+El cáncer de mama constituye una de las principales causas de mortalidad femenina a nivel mundial. La detección temprana es fundamental para aumentar las probabilidades de supervivencia.
+
+Las SVM pueden emplearse para clasificar tumores como benignos o malignos utilizando características extraídas de biopsias y mamografías, tales como textura, forma, tamaño, simetría y concavidad celular.
+
+=== Wisconsin Breast Cancer Dataset (WBCD)
+
+Uno de los conjuntos de datos más utilizados para evaluar algoritmos de clasificación médica es el Wisconsin Breast Cancer Dataset (WBCD), desarrollado por el Dr. William Wolberg.
+
+El objetivo consiste en determinar si una muestra obtenida mediante biopsia por aspiración con aguja fina corresponde a un tumor benigno o maligno.
+
+El conjunto contiene 30 características relacionadas con:
+
+- Radio celular.
+- Textura.
+- Perímetro.
+- Área.
+- Suavidad.
+- Compacidad.
+- Concavidad.
+- Puntos cóncavos.
+- Simetría.
+- Dimensión fractal.
+
+Este dataset se ha convertido en un estándar para investigación biomédica y sistemas de apoyo al diagnóstico médico.
+
+=== Funcionamiento de SVM en el Diagnóstico
+
+El proceso de clasificación sigue las siguientes etapas:
+
+1. Ingreso de las características extraídas de la muestra.
+2. Construcción del hiperplano óptimo de separación.
+3. Identificación de los vectores de soporte.
+4. Clasificación de nuevos pacientes.
+
+Con configuraciones adecuadas, especialmente utilizando kernel RBF, las SVM pueden alcanzar precisiones superiores al 96 %, convirtiéndose en una herramienta efectiva para apoyar el diagnóstico clínico.
+
+=== Importancia del Recall
+
+En aplicaciones médicas, la métrica de *Recall* o exhaustividad resulta especialmente importante.
+
+Un falso negativo implica clasificar incorrectamente un tumor maligno como benigno, lo que podría retrasar el tratamiento y comprometer la salud del paciente. Por ello, en este tipo de problemas el Recall suele considerarse más relevante que la exactitud global (*Accuracy*).
+
+== Discusión
+
+Las Máquinas de Vectores de Soporte ofrecen importantes ventajas competitivas frente a otros algoritmos de aprendizaje automático. Destacan por su efectividad en espacios de alta dimensionalidad, eficiencia en memoria y resistencia al sobreajuste mediante la maximización del margen de separación @geron2022.
+
+No obstante, presentan limitaciones asociadas a la escalabilidad, sensibilidad al ruido y ausencia de estimaciones probabilísticas nativas. Estas características hacen que sean especialmente adecuadas para conjuntos de datos medianos y problemas donde las clases presentan una separación relativamente clara @geron2022.
+
+En el ámbito médico, particularmente en el diagnóstico de cáncer de mama, las SVM continúan siendo una de las técnicas más utilizadas debido a su elevada capacidad predictiva y su facilidad de interpretación en datos tabulares.
+
+== Investigaciones Recientes
+
+- Ozer et al. (2020) integraron datos genómicos y clínicos para clasificar subtipos de cáncer de mama, obteniendo altos niveles de precisión en la predicción de recurrencias.
+
+- Khoudi et al. (2025) desarrollaron la variante DWD-SVM aplicada al WBCD, alcanzando una precisión del 99.3 % y una mayor robustez frente a datos desbalanceados.
+
+- Kiani Sarkaleh et al. (2026) propusieron un sistema de diagnóstico asistido por computadora basado en SVM y selección optimizada de características, logrando sensibilidades superiores al 99 % en mamografías digitales.
+
+== Implementación en Sistemas Reales
+
+Las SVM se encuentran integradas en diversos sistemas de apoyo a la toma de decisiones:
+
+- Hospitales y clínicas para asistencia diagnóstica.
+- Plataformas CAD (Computer-Aided Diagnosis).
+- Sistemas biomédicos de investigación clínica.
+- Herramientas de validación de hipótesis médicas y factores de riesgo.
+
+Estas aplicaciones demuestran la vigencia de las SVM como una de las técnicas más relevantes dentro del aprendizaje supervisado para problemas de clasificación de alta precisión.
