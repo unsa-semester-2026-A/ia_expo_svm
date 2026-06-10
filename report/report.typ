@@ -37,7 +37,6 @@
           gutter: 1em,
           [Curso:], [#strong(config.courseName)],
           [Docente:], [#strong(config.instructorName)],
-          [Jefe de Práctica:], [#strong(config.instructorName)],
         )
       ]
 

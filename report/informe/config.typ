@@ -9,11 +9,11 @@
 #let instructorName = "Yasiel Pérez Vera"
 
 #let memberList = (
-  "Quispe Condori, Alvaro Raul",
-  "Sivincha Machaca, Saul Andre",
+  "Huacani Jara, Denise Andrea",
   "Mollo Chuquicaña, Dolly Yadhira",
   "Pacheco Palo, Fabiana Francinet",
-  "Huacani Jara, Denise Andrea",
+  "Quispe Condori, Alvaro Raul",
+  "Sivincha Machaca, Saul Andre",
 )
 
 #let presentationDate = datetime.today().display("[day] de [month repr:long] de [year]")
