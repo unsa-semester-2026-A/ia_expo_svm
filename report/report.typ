@@ -13,6 +13,16 @@
 #let headerBig(content) = util.fontBuild(content, "bold", 12pt, center, black)
 #let headerSmall(content) = util.fontBuild(content, "regular", 9pt, center, black)
 
+// Estilo de bloques de código
+#show raw.where(block: true): it => block(
+  fill: rgb("#f6f8fa"),
+  width: 100%,
+  inset: 1em,
+  radius: 6pt,
+  stroke: 0.5pt + rgb("#e1e4e8"),
+  text( fill: rgb("#24292e"), it),
+)
+
 // --- Carátula ---
 #align(center + horizon)[
   #block(
