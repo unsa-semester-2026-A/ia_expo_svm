@@ -82,5 +82,7 @@
 
 // Incluir archivos modulares de contenido
 #include "presentacion/content/1_introduccion.typ"
-#include "presentacion/content/2_desarrollo.typ"
-#include "presentacion/content/3_conclusiones.typ"
+#include "presentacion/content/2_fundamentos.typ"
+#include "presentacion/content/3_flujo_parametros.typ"
+#include "presentacion/content/4_ventajas_apps.typ"
+#include "presentacion/content/5_demo.typ"

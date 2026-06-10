@@ -2,16 +2,18 @@
 #let university = "Universidad Nacional de San Agustín"
 #let faculty = "Facultad de Ingeniería de Producción y Servicios"
 #let professionalSchool = "Escuela Profesional de Ingeniería de Sistemas"
-#let courseName = "BASE DE DATOS"
-#let reportTitle = "Informe de Entregable"
-#let reportSubtitle = "Base de datos perspectiva 1"
-#let semester = "V"
-#let instructorName = "Dr. Ing. César Baluarte Araya"
+#let courseName = "Inteligencia Artificial"
+#let reportTitle = "Informe Técnico — Seminario de Machine Learning"
+#let reportSubtitle = "Support Vector Machines (SVM)"
+#let semester = "VII"
+#let instructorName = "Yasiel Pérez Vera"
 
 #let memberList = (
-  "Noa Camino, Yenaro Joel",
-  "Mestas Zegarra, Christian Raul",
   "Quispe Condori, Alvaro Raul",
+  "Sivincha Machaca, Saul Andre",
+  "Mollo Chuquicaña, Dolly Yadhira",
+  "Pacheco Palo, Fabiana Francinet",
+  "Huacani Jara, Denise Andrea",
 )
 
 #let presentationDate = datetime.today().display("[day] de [month repr:long] de [year]")

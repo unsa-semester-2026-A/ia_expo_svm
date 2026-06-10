@@ -1,0 +1,8 @@
+= Conclusiones
+
+En base al desarrollo teórico y a la validación práctica realizada durante el seminario sobre Máquinas de Vectores de Soporte (SVM), el grupo ha arribado a las siguientes conclusiones:
+
+1. Las SVM se consolidan como un clasificador altamente potente y confiable para conjuntos de datos con dimensionalidad moderada y alta. Su robustez teórica, respaldada por la optimización cuadrática y la maximización del margen, permite generar fronteras de decisión estables que generalizan de forma óptima ante datos desconocidos.
+2. La fase de preprocesamiento, específicamente el escalado de características (StandardScaler), constituye un requisito indispensable para el correcto desempeño del modelo. Sin este paso, las distancias geométricas calculadas en el espacio de características se verían sesgadas por variables con mayor escala, degradando sustancialmente el rendimiento predictivo del clasificador.
+3. El uso del "Kernel Trick" (específicamente la función RBF) expande significativamente la flexibilidad del modelo, permitiendo resolver problemas complejos que no son linealmente separables en su espacio original. No obstante, esto introduce la necesidad de un ajuste exhaustivo de hiperparámetros críticos como $C$ y $gamma$, cuyo desbalance puede derivar fácilmente en subajuste o sobreajuste.
+4. En el caso de estudio práctico orientado al diagnóstico médico de tumores de mama, las SVM demostraron ser altamente efectivas, alcanzando precisiones sobresalientes de manera rápida. La capacidad de controlar las predicciones y de priorizar métricas como el Recall sobre la clase crítica (malignos) resalta el valor práctico de esta metodología en sistemas inteligentes de soporte médico.
