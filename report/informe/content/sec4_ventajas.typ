@@ -1,42 +1,5 @@
 = Ventajas, Limitaciones y Aplicaciones de las Máquinas de Vectores de Soporte (SVM)
 
-== Antecedentes
-
-=== Hiperplano
-
-El hiperplano es la frontera de decisión utilizada por las Máquinas de Vectores de Soporte para separar las clases de un conjunto de datos.
-
-- En dos dimensiones corresponde a una línea.
-- En tres dimensiones corresponde a un plano.
-- En espacios de mayor dimensionalidad recibe el nombre de hiperplano.
-
-La calidad de la clasificación depende de la ubicación óptima de este hiperplano respecto a los datos.
-
-=== Vectores de Soporte
-
-Los vectores de soporte son las observaciones más cercanas al hiperplano de separación. Estos puntos son fundamentales porque determinan completamente la posición y orientación de la frontera de decisión.
-
-Una característica importante de SVM es que únicamente estos puntos influyen directamente en el modelo final, lo que contribuye a su eficiencia en memoria.
-
-=== Margen
-
-El margen es la distancia entre el hiperplano y los vectores de soporte más cercanos de cada clase.
-
-El objetivo principal de SVM es maximizar este margen, ya que una mayor separación entre clases suele producir una mejor capacidad de generalización sobre datos no observados.
-
-=== El Truco del Kernel (Kernel Trick)
-
-En numerosos problemas reales los datos no son linealmente separables. Para resolver esta limitación, SVM utiliza funciones kernel que permiten proyectar los datos a espacios de mayor dimensionalidad donde sí es posible encontrar una separación lineal.
-
-El procedimiento consiste en:
-
-- Tomar los datos originales en un espacio de baja dimensión.
-- Transformarlos matemáticamente a un espacio de mayor dimensión.
-- Encontrar un hiperplano de separación en dicho espacio.
-- Proyectar el resultado nuevamente al espacio original.
-
-Como consecuencia, la frontera de decisión observada en el espacio original puede adoptar formas no lineales complejas.
-
 == Ventajas
 
 === Alta eficacia en espacios de gran dimensionalidad
@@ -115,6 +78,9 @@ La calidad del modelo depende considerablemente de la elección del kernel y de 
 *Aplicación afectada:* análisis de sentimientos.
 
 === Escenarios ideales y problemáticos
+El algoritmo SVM es eficiente en memoria porque solo utiliza los vectores de soporte más cercanos al hiperplano para definir la frontera de decisión. Esto reduce la cantidad de datos necesarios para representar el modelo y optimiza la gestión de memoria.
+Además, su principio de maximización del margen le permite generalizar bien, es decir, realizar predicciones precisas sobre datos no vistos durante el entrenamiento.
+Sin embargo, el proceso de entrenamiento es computacionalmente costoso, ya que requiere comparar todos los puntos del dataset para encontrar la frontera óptima. Por ello, aunque SVM es excelente para datasets medianos y de alta dimensionalidad, se vuelve poco práctico en escenarios de Big Data con millones de muestras. Debido a este panorama se plantea escenarios ideales y problematicos:
 
 *Escenarios ideales:*
 
@@ -168,11 +134,6 @@ El proceso de clasificación sigue las siguientes etapas:
 
 Con configuraciones adecuadas, especialmente utilizando kernel RBF, las SVM pueden alcanzar precisiones superiores al 96 %, convirtiéndose en una herramienta efectiva para apoyar el diagnóstico clínico.
 
-=== Importancia del Recall
-
-En aplicaciones médicas, la métrica de *Recall* o exhaustividad resulta especialmente importante.
-
-Un falso negativo implica clasificar incorrectamente un tumor maligno como benigno, lo que podría retrasar el tratamiento y comprometer la salud del paciente. Por ello, en este tipo de problemas el Recall suele considerarse más relevante que la exactitud global (*Accuracy*).
 
 == Discusión
 
