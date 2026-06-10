@@ -2,7 +2,7 @@
 #import "informe/config.typ" as config
 
 // Estilos Globales
-#set text(font: "Lato", size: 11pt)
+#set text(font: "New Computer Modern Math", size: 11pt)
 #set par(justify: true)
 #set page(
   paper: "a4",
